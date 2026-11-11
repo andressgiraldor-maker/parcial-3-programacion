@@ -2,9 +2,35 @@ public interface EmpresaDomicilio {
 
     public String getNombre();
 
-    public double calcularCosto();
+    /**
+     * metodo para clacular el costo que sera utilizado por sus hijas
+     * @param km del recorrido
+     * @return
+     */
 
-    public boolean aceptarRecorrido();
+    public double calcularCosto(double km);
 
-    public boolean solicitarServicio();
+    /**
+     * metodo para aceptar el recorrido, el cual sera utilizado por sus hijas
+     * @param km del recorrido
+     * @return
+     */
+
+    /**
+     * metodo para aceptar el recorrido, el cual sera utilizado por sus hijas
+     * @param km del recorrido
+     * @return
+     */
+
+    public boolean aceptarRecorrido(double km);
+
+    /**
+     * metodo para aceptar el recorrido, el cual sera utilizado por sus hijas
+     * @param km del recorrido
+     * @return
+     */
+
+    public boolean solicitarServicio(double km);
+
+
 }

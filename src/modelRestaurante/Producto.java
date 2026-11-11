@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
-public class Producto {
+public abstract  class Producto {
 
     //Atributos de la clase Prodcuto
     private int codigo;
     private String nombre;
     private String descripcion;
     private double precio;
-    private String tiempoPreparacion;
+    private int tiempoPreparacion;
 
     //Relaciones de la clase Producoto
-    private List<DetallePedido> listProdcutoDetallePedidos;
+    private List<DetallePedido> listProductoDetallePedidos;
 
     /**
      * metodo constructor de la clase Prodcuto
@@ -20,14 +20,28 @@ public class Producto {
      * @param precio del producto
      * @param tiempoPreparacion del producto
      */
-    public Producto(int codigo, String nombre, String descripcion, double precio, String tiempoPreparacion) {
+    public Producto(int codigo, String nombre, String descripcion, double precio, int tiempoPreparacion) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.tiempoPreparacion = tiempoPreparacion;
-        this.listProdcutoDetallePedidos =new ArrayList<>();
+        this.listProductoDetallePedidos =new ArrayList<>();
     }
+
+    /**
+     * metodo para clacular el precio de la venta que heredaran sus clases hijas
+     * @return
+     */
+
+    public abstract double calcularPrecioVenta();
+
+    /**
+     * metodo para confimar si cumplen las condiciones de calidad que heredaran sus hijas
+     * @return
+     */
+
+    public abstract  boolean cumpleCondicionesCalidad();
 
     public int getCodigo() {
         return codigo;
@@ -61,21 +75,22 @@ public class Producto {
         this.precio = precio;
     }
 
-    public String getTiempoPreparacion() {
+    public int getTiempoPreparacion() {
         return tiempoPreparacion;
     }
 
-    public void setTiempoPreparacion(String tiempoPreparacion) {
+    public void setTiempoPreparacion(int tiempoPreparacion) {
         this.tiempoPreparacion = tiempoPreparacion;
     }
 
     public List<DetallePedido> getListProdcutoDetallePedidos() {
-        return listProdcutoDetallePedidos;
+        return listProductoDetallePedidos;
     }
 
-    public void setListProdcutoDetallePedidos(List<DetallePedido> listProdcutoDetallePedidos) {
-        this.listProdcutoDetallePedidos = listProdcutoDetallePedidos;
+    public void setListProductoDetallePedidos(List<DetallePedido> listProdcutoDetallePedidos) {
+        this.listProductoDetallePedidos = listProdcutoDetallePedidos;
     }
+
 
     @Override
     public String toString() {
@@ -85,7 +100,7 @@ public class Producto {
                 ", descripcion='" + descripcion + "'n" +
                 ", precio=" + precio + "\n" +
                 ", tiempoPreparacion='" + tiempoPreparacion + "\n" +
-                ", listProdcutoDetallePedidos=" + listProdcutoDetallePedidos + "\n" +
+                ", listProductoDetallePedidos=" + listProductoDetallePedidos + "\n" +
                 '}';
     }
 }

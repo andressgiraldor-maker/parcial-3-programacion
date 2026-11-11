@@ -17,12 +17,34 @@ public class PlatoFuerte  extends Producto{
      * @param peso del plato
      * @param coccionAprobada del plato
      */
-    public PlatoFuerte(int codigo, String nombre, String descripcion, double precio, String tiempoPreparacion, double peso, String coccionAprobada) {
+    public PlatoFuerte(int codigo, String nombre, String descripcion, double precio, int tiempoPreparacion, double peso, String coccionAprobada) {
         super(codigo, nombre, descripcion, precio, tiempoPreparacion);
         this.peso = peso;
         this.coccionAprobada = coccionAprobada;
         this.preparacion = preparacion;
     }
+
+    /**
+     * metodo para calcular el precio de venta de un plato fuerte
+     * @return
+     */
+
+    public double calcularPrecioVenta(){
+
+        return getPrecio() * 1.20;
+
+    }
+
+    /**
+     * metodo para verificar si cumple las condiciones de calidad desde la clase PlatoFuerte
+     * @return
+     */
+
+    public boolean cumpleCondicionesCalidad(){
+
+        return peso>=200 && peso<=900 && getTiempoPreparacion() >=10 && getTiempoPreparacion() <=60 && coccionAprobada.equals("si");
+
+        }
 
     public double getPeso() {
         return peso;
@@ -57,3 +79,4 @@ public class PlatoFuerte  extends Producto{
                 '}';
     }
 }
+

@@ -1,27 +1,39 @@
-public class RapidoExpress implements EmpresaDomicilio{
+public class RapidoExpress implements EmpresaDomicilio {
 
-    //Atributos de la clase
-    private double tarifa;
-    private double tarifaKilometro;
+    // Atributos de la clase
+    private double tarifa = 5000;
+    private double tarifaKilometro = 1500;
+    private double maxKilometros = 12;
 
 
-    @Override
     public String getNombre() {
-        return "";
+        return "RapidoExpress";
     }
 
-    @Override
-    public double calcularCosto() {
-        return 0;
+    /**
+     * metodo para calcular el costo desde la clase
+     * @param km del recorrido
+     * @return
+     */
+    public double calcularCosto(double km) {
+        return tarifa + (tarifaKilometro * km);
     }
 
-    @Override
-    public boolean aceptarRecorrido() {
-        return false;
+    /**
+     * metodo para aceptar el recorrido desde la clase RapidoExpress
+     * @param km del recorrido
+     * @return
+     */
+    public boolean aceptarRecorrido(double km) {
+        return km > 0 && km <= maxKilometros;
     }
 
-    @Override
-    public boolean solicitarServicio() {
-        return false;
+    /**
+     * metodo para solicitar el servicio desde la clase RapidoExpress
+     * @param km del recorrido
+     * @return
+     */
+    public boolean solicitarServicio(double km) {
+        return aceptarRecorrido(km);
     }
 }

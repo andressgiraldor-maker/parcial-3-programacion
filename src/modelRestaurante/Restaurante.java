@@ -9,7 +9,7 @@ public class Restaurante {
 
     //Relaciones de la clase Restaurante
     private List<Cliente> listRestauranteClientes;
-    private List<Pedido> listRestaurantePedido;
+    private List<Pedido> listRestaurantePedidos;
     private List<Producto> listRestauranteProductos;
 
     /**
@@ -23,8 +23,85 @@ public class Restaurante {
         this.nit = nit;
         this.direccion = direccion;
         this.listRestauranteClientes = new ArrayList<>();
-        this.listRestaurantePedido = new ArrayList<>();
+        this.listRestaurantePedidos = new ArrayList<>();
         this.listRestauranteProductos = new ArrayList<>();
+    }
+
+    /**
+     * metodo para agregar un cliente al restaurante
+     * @param documento del cliente
+     * @param nombre del cliente
+     * @param telefono del cliente
+     * @param gmail del cliente
+     * @param direccion del cliente
+     * @return
+     */
+
+    public boolean agregarClienteARestaurante(int documento, String nombre, int telefono, String gmail, String direccion){
+        boolean existe= false;
+        Cliente cliente= buscarClienteEnRestaurante(documento);
+
+        if(cliente==null){
+            Cliente cliente1= new Cliente(documento, nombre, telefono, gmail, direccion);
+            listRestauranteClientes.add(cliente1);
+            existe= true;
+        }
+        return existe;
+    }
+
+    /**
+     * metodo para buscar un cliente en el restaurante
+     * @param documento del cliente
+     * @return
+     */
+
+    public Cliente buscarClienteEnRestaurante(int documento){
+        Cliente encontrado= null;
+
+        for(int i=0; i<listRestauranteClientes.size(); i++){
+            Cliente cliente= listRestauranteClientes.get(i);
+
+            if(cliente.getDocumento()== documento){
+                encontrado= cliente;
+            }
+        }
+        return encontrado;
+    }
+
+    /**
+     * metodo para agregar un producto al restaurante
+     * @param producto producto
+     * @return
+     */
+    public boolean agregarProductoARestaurante(Producto producto){
+        boolean agregado= false;
+        Producto producto1= buscarProductoEnRestaurante(producto.getCodigo());
+
+        if(producto1==null){
+            listRestauranteProductos.add(producto1);
+            agregado= true;
+        }
+        return agregado;
+
+    }
+
+    /**
+     * metodo para buscar un producto en el restaurante
+     * @param codigo del producto
+     * @return
+     */
+
+    public Producto buscarProductoEnRestaurante(int codigo){
+        Producto encontrado= null;
+
+        for(int i=0; i<listRestauranteProductos.size(); i++){
+            Producto producto= listRestauranteProductos.get(i);
+
+            if(producto.getCodigo()== codigo){
+                encontrado= producto;
+            }
+        }
+        return encontrado;
     }
 
     public String getNombre() {
@@ -60,11 +137,11 @@ public class Restaurante {
     }
 
     public List<Pedido> getListRestaurantePedido() {
-        return listRestaurantePedido;
+        return listRestaurantePedidos;
     }
 
     public void setListRestaurantePedido(List<Pedido> listRestaurantePedido) {
-        this.listRestaurantePedido = listRestaurantePedido;
+        this.listRestaurantePedidos = listRestaurantePedido;
     }
 
     public List<Producto> getListRestauranteProductos() {
@@ -82,7 +159,7 @@ public class Restaurante {
                 ", nit='" + nit  + "\n" +
                 ", direccion='" + direccion + "\n" +
                 ", listRestauranteClientes=" + listRestauranteClientes + "\n" +
-                ", listRestaurantePedido=" + listRestaurantePedido + "\n" +
+                ", listRestaurantePedido=" + listRestaurantePedidos + "\n" +
                 ", listRestauranteProductos=" + listRestauranteProductos + "\n" +
                 '}';
     }

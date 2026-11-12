@@ -12,12 +12,31 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class ClienteTest {
     Cliente cliente = new Cliente(1094, "Ana Gomez", 30012,
-                        "ana@correo.com", "Calle 10 #5-20");
-    Pedido pedido = new Pedido(1234567, LocalDate.now(),cliente,5,true,2000, ModalidaEntrega.DOMICILIO,EstadoPedido.PENDIENTE);
+            "ana@correo.com", "Calle 10 #5-20");
+    Pedido pedido = new Pedido(1234567, LocalDate.now(), cliente, 5, true, 2000, ModalidaEntrega.DOMICILIO, EstadoPedido.PENDIENTE);
 
     @Test
     void agregarPedidoAUnCliente() {
         boolean agregado = cliente.agregarPedidoAUnCliente(pedido);
         assertTrue(agregado);
+    }
+
+    @Test
+    void agregarPedidoNull() {
+        assertFalse(cliente.agregarPedidoAUnCliente(null));
+    }
+
+    @Test
+    void historialInicialVacio() {
+        assertEquals(0, cliente.getListClientePedidos().size());
+    }
+
+    @Test
+    void agregarDosPedidos() {
+        Pedido pedido2 = new Pedido(7654321, LocalDate.now(), cliente,
+                5, true, 2000, ModalidaEntrega.DOMICILIO, EstadoPedido.PENDIENTE);
+        cliente.agregarPedidoAUnCliente(pedido);
+        cliente.agregarPedidoAUnCliente(pedido2);
+        assertEquals(2, cliente.getListClientePedidos().size());
     }
 }

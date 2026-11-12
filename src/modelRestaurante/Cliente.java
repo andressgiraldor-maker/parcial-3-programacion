@@ -30,6 +30,19 @@ public class Cliente {
         this.listClientePedidos = new ArrayList<>();
     }
 
+    /**
+     * metodo para que el cliente solicite un pedido
+     * @param pedido del pedido
+     * @return
+     */
+    public boolean agregarPedidoAUnCliente(Pedido pedido) {
+        if (pedido == null) {
+            return false;
+        }
+        listClientePedidos.add(pedido);
+        return true;
+    }
+
     public int getDocumento() {
         return documento;
     }

@@ -10,11 +10,6 @@ public interface EmpresaDomicilio {
 
     public double calcularCosto(double km);
 
-    /**
-     * metodo para aceptar el recorrido, el cual sera utilizado por sus hijas
-     * @param km del recorrido
-     * @return
-     */
 
     /**
      * metodo para aceptar el recorrido, el cual sera utilizado por sus hijas

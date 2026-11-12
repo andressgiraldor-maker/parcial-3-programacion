@@ -15,6 +15,22 @@ public class DetallePedido {
         this.cantidad = cantidad;
     }
 
+    /**
+     * metodo para calcular el subtotal de un pedido solicitado
+     * @return
+     */
+    public double calcularSubtotal() {
+        return producto.calcularPrecioVenta() * cantidad;
+    }
+
+    /**
+     * metodo para verificar que una cantidad se valida
+     * @return
+     */
+    public boolean esCantidadValida() {
+        return cantidad > 0;
+    }
+
     public Producto getProducto() {
         return producto;
     }

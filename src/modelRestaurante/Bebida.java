@@ -63,4 +63,46 @@ public class Bebida extends Producto {
 
         return volumenValido && temperaturaValida;
     }
+
+    public double getVolumen() {
+        return volumen;
+    }
+
+    public void setVolumen(double volumen) {
+        this.volumen = volumen;
+    }
+
+    public double getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(double temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public boolean isRequierePreparacionEspecial() {
+        return requierePreparacionEspecial;
+    }
+
+    public void setRequierePreparacionEspecial(boolean requierePreparacionEspecial) {
+        this.requierePreparacionEspecial = requierePreparacionEspecial;
+    }
+
+    @Override
+    public String toString() {
+        return "Bebida{" +
+                "volumen=" + volumen + "\n" +
+                ", temperatura=" + temperatura + "\n" +
+                ", tipo='" + tipo + "\n" +
+                ", requierePreparacionEspecial=" + requierePreparacionEspecial + "\n" +
+                '}';
+    }
 }

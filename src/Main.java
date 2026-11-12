@@ -14,25 +14,25 @@ public class Main {
                     
                     -------------EL BUEN COMER-------------
                     1. Registrar producto
-                    ---------------------------------------
+                    
                     2. Registrar cliente
-                    ----------------------------------------
+                    
                     3. Registrar pedido
-                    ----------------------------------------
+                    
                     4. Calcular total de un pedido
-                    ----------------------------------------
+                    
                     5. Historial de pedidos de un cliente
-                    ----------------------------------------
+                    
                     6. Entregar o cancelar un pedido
-                    ----------------------------------------
+                    
                     7. Productos disponibles y no conformes
-                    ----------------------------------------
+                    
                     8. Ingresos y reportes
-                    ----------------------------------------
-                    0. Salir"""));
+                    
+                    9. Salir"""));
 
             if (opcion == 1) {
-                //-------------------------------------------------------------------------------------------------------------------------------------------------
+
                 int categoria = Integer.parseInt(JOptionPane.showInputDialog(null, "categoría: 1. Plato fuerte  2. Bebida  3. Postre"));
                 int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el código"));
                 String nombre = JOptionPane.showInputDialog(null, "ingrese el nombre");
@@ -66,7 +66,7 @@ public class Main {
                 }
 
             } else if (opcion == 2) {
-                //-----------------------------------------------------------------------------------------------------------------
+
                 int documento = Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el documento"));
                 String nombre = JOptionPane.showInputDialog(null, "ingrese el nombre completo");
                 int telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el teléfono"));
@@ -80,7 +80,7 @@ public class Main {
                 }
 
             } else if (opcion == 3) {
-                //----------------------------------------------------------------------------------------------------------------------
+
                 int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el código del pedido"));
                 int documento = Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el documento del cliente"));
                 Cliente cliente = restaurante.buscarClienteEnRestaurante(documento);
@@ -140,7 +140,7 @@ public class Main {
                 }
 
             }else if (opcion == 4) {
-                //-------------------------------------------------------------------------------------------------------------------------
+
                 int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el código del pedido"));
                 Pedido pedido = restaurante.buscarPedidoEnRestaurante(codigo);
 
@@ -151,13 +151,86 @@ public class Main {
                     JOptionPane.showMessageDialog(null, "total del pedido " + codigo + ": $" + total);
                 }
 
+            }else if(opcion==5){
+                int documento= Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el documento del cliente"));
+                String historial= restaurante.consultarHistorialCliente(documento);
+                JOptionPane.showMessageDialog(null, historial);
+
+            }else if(opcion==6){
+                int codigo= Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo del pedido"));
+                Pedido pedido= restaurante.buscarPedidoEnRestaurante(codigo);
+
+                if(pedido!=null){
+                    int elijaOpcion= Integer.parseInt(JOptionPane.showInputDialog(null, """
+                            Elija una opcion
+                            1.Entregar
+                            2.Cancelar
+                            """));
+
+                    if(elijaOpcion==1){
+                        if(pedido.marcarEntregado()){
+                            JOptionPane.showMessageDialog(null, "Pedido entregado");
+                        } else{
+                            JOptionPane.showMessageDialog(null, "El pedido aun no esta confirmado para entregar");
+                        }
+                    } else if(elijaOpcion==2){
+                        if(pedido.cancelar()){
+                            JOptionPane.showMessageDialog(null, "Pedido cancelado");
+                        } else{
+                            JOptionPane.showMessageDialog(null, "El pedido ya fue entregado");
+                        }
+                    }
+                } else{
+                    JOptionPane.showMessageDialog(null, "El pedido no existe");
+                }
+
+            } else if (opcion==7) {
+
+                int mirarOpcion= Integer.parseInt(JOptionPane.showInputDialog(null, """
+                        
+                        Elija una opcion
+                        1.Productos disponibles
+                        2.No conformes
+                        """));
+                if(mirarOpcion==1){
+                    JOptionPane.showMessageDialog(null, "Estos son los productos disponibles:"+ restaurante.consultarProductosDisponibles());
+                } else if(mirarOpcion==2){
+                    JOptionPane.showMessageDialog(null, "Estos son los productos que no cumplen con la calidad:"+ restaurante.consultarProductosNoCumplenCalidad());
+                }
+
+            } else if (opcion == 8) {
+
+                int reporte = Integer.parseInt(JOptionPane.showInputDialog(null, """
+                        
+                         Elija una opcion
+                         1. Ingresos del restaurante
+                         2. Ingresos por domicilios
+                         3. Producto mas vendido
+                         4. Categoria con mayor ingreso
+                         """));
+
+                if (reporte == 1) {
+                    JOptionPane.showMessageDialog(null, "Ingresos del restaurante: $" + restaurante.calcularIngresos());
+                } else if (reporte == 2) {
+                    JOptionPane.showMessageDialog(null, "Ingresos por domicilios: $" + restaurante.calcularIngresosDomicilios());
+                } else if (reporte == 3) {
+                    Producto masVendido = restaurante.productoMasVendido();
+                    if (masVendido == null) {
+                        JOptionPane.showMessageDialog(null, "NO se ha realizado ninguna venta");
+                    } else {
+                        JOptionPane.showMessageDialog(null, " El Producto mas vendido es: " + masVendido.getNombre());
+                    }
+                } else if (reporte == 4) {
+                    JOptionPane.showMessageDialog(null, "La Categoria con mayor ingreso es: " + restaurante.categoriaMayorIngreso());
+                }
+            } else if(opcion==9){
+                JOptionPane.showMessageDialog(null, "Gracias por participar, Adios");
+            }
             }
 
-
-
-
+        }
 
         }
-    }
-}
+
+
 

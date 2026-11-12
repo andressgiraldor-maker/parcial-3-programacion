@@ -20,4 +20,22 @@ class ClienteTest {
         boolean agregado = cliente.agregarPedidoAUnCliente(pedido);
         assertTrue(agregado);
     }
+    @Test
+    void agregarPedidoNull() {
+        assertFalse(cliente.agregarPedidoAUnCliente(null));
+    }
+
+    @Test
+    void historialInicialVacio() {
+        assertEquals(0, cliente.getListClientePedidos().size());
+    }
+
+    @Test
+    void agregarDosPedidos() {
+        Pedido pedido2 = new Pedido(7654321, LocalDate.now(), cliente,
+                5, true, 2000, ModalidaEntrega.DOMICILIO, EstadoPedido.PENDIENTE);
+        cliente.agregarPedidoAUnCliente(pedido);
+        cliente.agregarPedidoAUnCliente(pedido2);
+        assertEquals(2, cliente.getListClientePedidos().size());
+    }
 }
